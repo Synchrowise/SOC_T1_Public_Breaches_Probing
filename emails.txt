@@ -1,0 +1,1 @@
+#add emails here in a correct format. Eache line should contain only one email. Erase this line
