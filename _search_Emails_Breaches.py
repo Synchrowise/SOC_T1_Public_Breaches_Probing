@@ -3,16 +3,14 @@ import requests
 from pprint import pprint
 import time
 import datetime
+import os.path
+import sys
 
 #documentation: https://haveibeenpwned.com/API/v2
 #Github code : https://github.com/Synchrowise/SOC_T1_Public_Breaches_Probing
 
-#Compute the number of lines in the file
-num_lines = sum(1 for line in open("emails.txt"))
-
 #Initiate a counter variable
 i=1
-
 
 #Specifying these headers seem to be important for haveibeenpwned.com. Otherwise the server either rejects the client or Cloudfare challenges it via Javascript
 #The 'Accept': 'application/vnd.haveibeenpwned.v2+json' header ensures we query the v2 API
@@ -20,10 +18,19 @@ headers = {
 					'User-Agent': 'Pwnage-Checker-For-Synchrowise',
 					'Accept': 'application/vnd.haveibeenpwned.v2+json'
 					}
+if not os.path.exists('./emails.txt'):
 
-with open("emails.txt","r") as file:
+	print("\n emails.txt not found! I'll put it for you in the same directory. Please fill it with e-mail addresses each one in a separate line. After doing that rerun the program.\n")
+	emails = open("emails.txt", "w")
+	emails.close()
+	sys.exit(1)
 
-	for email in file:
+
+#Compute the number of lines in the file
+num_lines = sum(1 for line in open("emails.txt"))
+
+with open("emails.txt","r") as emails:
+	for email in emails:
 		
 		#At each line in the input file we initialize a variable that assumes the seeked record hasn't been found yet
 		already_found_record = False
@@ -36,6 +43,11 @@ with open("emails.txt","r") as file:
 		#Saving the current date ant time
 		search_Date=str(datetime.datetime.now())[:-7].replace(":","-").replace(" ","_")
 		
+		#Checking for the presence of the output.txt file and creating it if necessary
+		
+		if not os.path.exists('./output.txt'):
+			output = open("output.txt", "a")
+	
 		#Opening previous searches that are stored in the "output.txt" file
 		previous_searches = open("output.txt","r")
 		
@@ -70,7 +82,7 @@ with open("emails.txt","r") as file:
 		
 		#Update "output.txt" only if the record is new
 		if not already_found_record:
-			open("output.txt","a").write(record+record_timestamp)
+			output.write(record+record_timestamp)
 			
 			
 		
@@ -78,3 +90,5 @@ with open("emails.txt","r") as file:
 		i=i+1
 		
 		previous_searches.close()
+	
+emails.close()
