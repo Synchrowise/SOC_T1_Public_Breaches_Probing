@@ -5,6 +5,7 @@ import time
 import datetime
 
 #documentation: https://haveibeenpwned.com/API/v2
+#Github code : https://github.com/Synchrowise/SOC_T1_Public_Breaches_Probing
 
 #Compute the number of lines in the file
 num_lines = sum(1 for line in open("emails.txt"))
@@ -58,10 +59,9 @@ with open("emails.txt","r") as file:
 			#Saving the response with respect to the json format so that we can exploit its tree later
 			json_data = json.loads(response.text)
 			
-					
 			#Creating our record by querying the json variable to add interesting data and by separating fild names by ";" for csv preparation
-			record = record+";Breach_Source:https://haveibeenpwned.com"+";json_payload:{"+"'Domain':"+json_data[0]['Domain']+",'BreachDate':"+json_data[0]['BreachDate']+",'ModifiedDate':"+json_data[0]['ModifiedDate']+",'DataClasses':"+str(json_data[0]['DataClasses'])+",'IsVerified':"+str(json_data[0]['IsVerified'])+",'IsActive':"+str(json_data[0]['IsActive'])+"}"
-			
+			record = record+";Breach_Source:https://haveibeenpwned.com"+";json_payload:{"+"'Domain':"+json_data[0]['Domain']+",'BreachDate':"+json_data[0]['BreachDate']+",'ModifiedDate':"+json_data[0]['ModifiedDate']+",'DataClasses':"+str(json_data[0]['DataClasses'])+",'IsVerified':"+str(json_data[0]['IsVerified'])+"}"
+
 		#if the record is already stored in "output.txt" change the already_found_record to True
 		for previous_record in previous_searches:
 				if previous_record.find(record) != -1:
@@ -78,4 +78,3 @@ with open("emails.txt","r") as file:
 		i=i+1
 		
 		previous_searches.close()
-		
