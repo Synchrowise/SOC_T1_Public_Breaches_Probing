@@ -12,7 +12,7 @@ Python Script developped with Python 3.5
 Uses the requests library: http://docs.python-requests.org/en/master/
 
 Usage:
-1. Put the emails.txt and output.txt in the same directory as _search_Emails_Breaches.py. 
+1. Put the emails.txt and output.txt in the same directory as _search_Emails_Breaches.py or _search_Emails_Breaches.exe. 
 2. Fill in emails.txt with emails that you want to search breaches for, each email in a separate file.
-3. From within the same directory, run the python script _search_Emails_Breaches.py.
+3. From within the same directory, open a cmd and run the python script _search_Emails_Breaches.py or _search_Emails_Breaches.exe.
 4. Results will be put in output.txt file.
