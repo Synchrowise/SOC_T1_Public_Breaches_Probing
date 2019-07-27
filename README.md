@@ -1,7 +1,7 @@
 # SOC_T1_Public_Breaches_Probing
-Offers a package of python scripts to probe publicly disclosed breaches dumps. 
-The scripts use public APIs that responds to queries regarding emails, usernames, passwords etc. 
-The first version of this package focuses on emails probing. 
+Offers a python script to probe publicly disclosed breaches dumps. 
+The script use public API that responds to queries regarding emails, usernames, passwords etc. 
+The first version of this package focuses on emails probing.
 This could come handy when you want to learn your corporate emails exposure after a breach, especially if corporate users use their
 corporate emails in public websites.
 
@@ -10,3 +10,9 @@ Use these python scripts to query https://haveibeenpwned.com and other websites 
 Python Script developped with Python 3.5
 
 Uses the requests library: http://docs.python-requests.org/en/master/
+
+Usage:
+1. Put the emails.txt and output.txt in the same directory as _search_Emails_Breaches.py. 
+2. Fill in emails.txt with emails that you want to search breaches for, each email in a separate file.
+3. From within the same directory, run the python script _search_Emails_Breaches.py.
+4. Results will be put in output.txt file.
