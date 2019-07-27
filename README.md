@@ -16,3 +16,4 @@ Usage:
 2. Fill in emails.txt with emails that you want to search breaches for, each email in a separate file.
 3. From within the same directory, open a cmd and run the python script _search_Emails_Breaches.py or _search_Emails_Breaches.exe.
 4. Results will be put in output.txt file.
+5. Ne need to delete the output.txt file afterwards. The program will check the API and if there are no new breaches for the given email, it will not update the file for that email addresse.
